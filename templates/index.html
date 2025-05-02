@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Employer Management System</h1>
+    <p>Manage your employers efficiently with our API.</p>
+    <a href="{% url 'employer_list' %}" class="btn btn-primary">View Employers</a>
+{% endblock %}

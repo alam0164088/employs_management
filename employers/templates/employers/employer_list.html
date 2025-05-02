@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Employers{% endblock %}
+
+{% block content %}
+    <h2>My Employers</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company Name</th>
+                <th>Contact Person</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employer in employers %}
+                <tr>
+                    <td>{{ employer.company_name }}</td>
+                    <td>{{ employer.contact_person_name }}</td>
+                    <td>{{ employer.email }}</td>
+                    <td>{{ employer.phone_number }}</td>
+                    <td>
+                        <a href="{% url 'employer_detail' employer.id %}" class="btn btn-sm btn-info">View</a>
+                        <a href="{% url 'employer_edit' employer.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'employer_delete' employer.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No employers found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'employer_create' %}" class="btn btn-primary">Add Employer</a>
+{% endblock %}
