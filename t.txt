@@ -1,0 +1,55 @@
+employer_management/
+│
+├── manage.py
+├── employer_management/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── asgi.py
+│   ├── wsgi.py
+│
+├── authentication/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── permissions.py
+│   ├── tokens.py
+│   ├── templates/
+│   │   ├── authentication/
+│   │   │   ├── login.html
+│   │   │   ├── profile.html
+│
+├── employers/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── migrations/
+│   ├── models.py
+│   ├── serializers.py
+│   ├── views.py
+│   ├── permissions.py
+│   ├── templates/
+│   │   ├── employers/
+│   │   │   ├── employer_list.html
+│   │   │   ├── employer_form.html
+│
+├── templates/
+│   ├── admin/
+│   │   ├── base_site.html
+│   │   ├── index.html
+│   ├── rest_framework/
+│   │   ├── api.html
+│   │   ├── login.html
+│   ├── swagger/
+│   │   ├── swagger-ui.html
+│   │   ├── redoc.html
+│   ├── base.html
+│   ├── index.html
+│
+├── requirements.txt
+├── .env
+└── README.md
