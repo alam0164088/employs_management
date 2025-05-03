@@ -15,8 +15,8 @@ SECRET_KEY = config('SECRET_KEY', default='your-secret-key-here')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default='True', cast=bool)
 
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'employ-management-0xig.onrender.com']
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
