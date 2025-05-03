@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% if request.user.is_authenticated %}
+            <h2>Confirm Logout</h2>
+            <p>Are you sure you want to log out?</p>
+            <form method="post" action="{% url 'logout_page' %}">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        {% else %}
+            <h2>Logged Out</h2>
+            <p>You have been successfully logged out.</p>
+            <a href="{% url 'login_page' %}">Login Again</a>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,1 @@
+# No custom admin registrations needed for authentication app

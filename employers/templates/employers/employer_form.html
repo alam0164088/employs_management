@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Employer Form{% endblock %}
+
+{% block content %}
+<main>
+    <h1>{% if employer %}Edit Employer{% else %}Add Employer{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ employer.name }}" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ employer.email }}" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{ employer.phone }}">
+        </div>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <textarea class="form-control" id="address" name="address">{{ employer.address }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'employer_list_create' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</main>
+{% endblock %}
