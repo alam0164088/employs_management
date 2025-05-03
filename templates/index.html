@@ -3,7 +3,57 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-    <h1>Welcome to Employer Management System</h1>
-    <p>Manage your employers efficiently with our API.</p>
-    <a href="{% url 'employer_list' %}" class="btn btn-primary">View Employers</a>
+<main>
+    <!-- Hero Section -->
+    <section class="hero-section text-center py-5">
+        <div class="container">
+            <h1 class="display-4">Welcome to Employer Management System</h1>
+            <p class="lead">Efficiently manage your employers with our powerful API and user-friendly interface.</p>
+            <a href="{% url 'employer_list_create' %}" class="btn btn-primary btn-lg mr-2">View Employers</a>
+            <a href="/swagger/" class="btn btn-secondary btn-lg">View API Documentation</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-4">Why Choose Us?</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Easy Management</h5>
+                            <p class="card-text">Add, update, and delete employers with a few clicks.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Secure API</h5>
+                            <p class="card-text">Access our RESTful API with token-based authentication.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">Admin Control</h5>
+                            <p class="card-text">Manage users and employers from a powerful admin panel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section text-center py-5">
+        <div class="container">
+            <h2>Get Started Today</h2>
+            <p>Join thousands of businesses managing their employers efficiently.</p>
+            <a href="/api/auth/login/" class="btn btn-primary btn-lg">Login Now</a>
+        </div>
+    </section>
+</main>
 {% endblock %}

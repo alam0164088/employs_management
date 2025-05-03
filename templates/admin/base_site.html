@@ -1,5 +1,9 @@
-{% extends "admin/base_site.html" %}
+{% extends "admin/base.html" %}
+
+{% block title %}{{ title }} | Employer Management Admin{% endblock %}
 
 {% block branding %}
-    <h1 id="site-name">Employer Management System</h1>
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Employer Management Admin</a></h1>
 {% endblock %}
+
+{% block nav-global %}{% endblock %}
