@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Home{% endblock %}
 
@@ -9,8 +10,8 @@
         <div class="container">
             <h1 class="display-4">Welcome to Employer Management System</h1>
             <p class="lead">Efficiently manage your employers with our powerful API and user-friendly interface.</p>
-            <a href="{% url 'employer_list_create' %}" class="btn btn-primary btn-lg mr-2">View Employers</a>
-            <a href="/swagger/" class="btn btn-secondary btn-lg">View API Documentation</a>
+            <a href="{% url 'employer_list_create' %}" class="btn btn-primary btn-lg mx-2">View Employers</a>
+            <a href="/swagger/" class="btn btn-secondary btn-lg mx-2">View API Documentation</a>
         </div>
     </section>
 
@@ -20,7 +21,7 @@
             <h2 class="text-center mb-4">Why Choose Us?</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card mb-4">
+                    <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Easy Management</h5>
                             <p class="card-text">Add, update, and delete employers with a few clicks.</p>
@@ -28,7 +29,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card mb-4">
+                    <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Secure API</h5>
                             <p class="card-text">Access our RESTful API with token-based authentication.</p>
@@ -36,7 +37,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card mb-4">
+                    <div class="card mb-4 shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title">Admin Control</h5>
                             <p class="card-text">Manage users and employers from a powerful admin panel.</p>
@@ -52,8 +53,53 @@
         <div class="container">
             <h2>Get Started Today</h2>
             <p>Join thousands of businesses managing their employers efficiently.</p>
-            <a href="/api/auth/login/" class="btn btn-primary btn-lg">Login Now</a>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout_page' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-lg">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login_page' %}" class="btn btn-primary btn-lg">Login Now</a>
+            {% endif %}
         </div>
     </section>
 </main>
+
+<style>
+    .hero-section {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+    }
+    .card {
+        border-radius: 10px;
+        transition: transform 0.3s;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+    }
+    .btn-primary {
+        background-color: #0288d1;
+        border-color: #0288d1;
+    }
+    .btn-primary:hover {
+        background-color: #0277bd;
+        border-color: #0277bd;
+    }
+    .btn-secondary {
+        background-color: #6c757d;
+        border-color: #6c757d;
+    }
+    .btn-secondary:hover {
+        background-color: #5a6268;
+        border-color: #5a6268;
+    }
+    .btn-danger {
+        background-color: #d32f2f;
+        border-color: #d32f2f;
+    }
+    .btn-danger:hover {
+        background-color: #b71c1c;
+        border-color: #b71c1c;
+    }
+</style>
 {% endblock %}

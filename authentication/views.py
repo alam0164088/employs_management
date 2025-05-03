@@ -3,8 +3,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect
+from django.views.generic import View
 from .serializers import UserSerializer, RegisterSerializer
 
 class RegisterView(generics.CreateAPIView):
@@ -22,6 +23,7 @@ class LoginView(generics.GenericAPIView):
         user = authenticate(username=username, password=password)
         if user:
             refresh = RefreshToken.for_user(user)
+            login(request, user)
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
@@ -43,18 +45,22 @@ class LogoutView(APIView):
             return Response({"error": str(e)}, status=400)
 
 def login_page(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
-            return redirect('profile')
+            return redirect('index')
         else:
             return render(request, 'authentication/login.html', {'error': 'Invalid username or password'})
     return render(request, 'authentication/login.html')
 
 def register_page(request):
+    if request.user.is_authenticated:
+        return redirect('index')
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -62,7 +68,7 @@ def register_page(request):
         try:
             user = User.objects.create_user(username=username, password=password, email=email)
             login(request, user)
-            return redirect('profile')
+            return redirect('index')
         except Exception as e:
             return render(request, 'authentication/register.html', {'error': str(e)})
     return render(request, 'authentication/register.html')
@@ -77,3 +83,9 @@ def logout_page(request):
         logout(request)
         return redirect('login_page')
     return render(request, 'authentication/logout.html')
+
+class IndexView(View):
+    template_name = 'index.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
