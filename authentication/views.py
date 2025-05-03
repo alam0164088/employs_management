@@ -1,8 +1,9 @@
 from rest_framework import generics, permissions
+from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
-from django.shortcuts import render
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from .serializers import UserSerializer, RegisterSerializer
 
@@ -28,8 +29,51 @@ class LoginView(generics.GenericAPIView):
             })
         return Response({'error': 'Invalid credentials'}, status=400)
 
+class LogoutView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data.get("refresh")
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            logout(request)
+            return Response({"message": "Successfully logged out"}, status=200)
+        except Exception as e:
+            return Response({"error": str(e)}, status=400)
+
 def login_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            return redirect('profile')
+        else:
+            return render(request, 'authentication/login.html', {'error': 'Invalid username or password'})
     return render(request, 'authentication/login.html')
 
+def register_page(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        email = request.POST.get('email')
+        try:
+            user = User.objects.create_user(username=username, password=password, email=email)
+            login(request, user)
+            return redirect('profile')
+        except Exception as e:
+            return render(request, 'authentication/register.html', {'error': str(e)})
+    return render(request, 'authentication/register.html')
+
 def profile_page(request):
+    if not request.user.is_authenticated:
+        return redirect('login_page')
     return render(request, 'authentication/profile.html')
+
+def logout_page(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('login_page')
+    return render(request, 'authentication/logout.html')
