@@ -8,37 +8,42 @@
     <!-- Hero Section -->
     <section class="hero-section text-center py-5">
         <div class="container">
-            <h1 class="display-4">Welcome to Employer Management System</h1>
-            <p class="lead">Efficiently manage your employers with our powerful API and user-friendly interface.</p>
-            <a href="{% url 'employer_list_create' %}" class="btn btn-primary btn-lg mx-2">View Employers</a>
-            <a href="/swagger/" class="btn btn-secondary btn-lg mx-2">View API Documentation</a>
+            <h1 class="display-4 animate__animated animate__fadeInDown">Welcome to Employer Management System</h1>
+            <p class="lead animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">Efficiently manage your employers with our powerful API and user-friendly interface.</p>
+            <div class="mt-4">
+                <a href="{% url 'employer_list_create' %}" class="btn btn-primary btn-lg mx-2 animate__animated animate__zoomIn" style="animation-delay: 0.6s;">View Employers</a>
+                <a href="/swagger/" class="btn btn-secondary btn-lg mx-2 animate__animated animate__zoomIn" style="animation-delay: 0.8s;">View API Documentation</a>
+            </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section py-5 bg-light">
+    <section class="features-section py-5">
         <div class="container">
-            <h2 class="text-center mb-4">Why Choose Us?</h2>
+            <h2 class="text-center mb-5 animate__animated animate__fadeInUp">Why Choose Us?</h2>
             <div class="row">
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
                         <div class="card-body">
+                            <i class="fas fa-cogs fa-2x mb-3 text-primary"></i>
                             <h5 class="card-title">Easy Management</h5>
                             <p class="card-text">Add, update, and delete employers with a few clicks.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
                         <div class="card-body">
+                            <i class="fas fa-shield-alt fa-2x mb-3 text-primary"></i>
                             <h5 class="card-title">Secure API</h5>
                             <p class="card-text">Access our RESTful API with token-based authentication.</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card mb-4 shadow-sm">
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm animate__animated animate__fadeInRight" style="animation-delay: 0.6s;">
                         <div class="card-body">
+                            <i class="fas fa-user-cog fa-2x mb-3 text-primary"></i>
                             <h5 class="card-title">Admin Control</h5>
                             <p class="card-text">Manage users and employers from a powerful admin panel.</p>
                         </div>
@@ -51,55 +56,20 @@
     <!-- CTA Section -->
     <section class="cta-section text-center py-5">
         <div class="container">
-            <h2>Get Started Today</h2>
-            <p>Join thousands of businesses managing their employers efficiently.</p>
+            <h2 class="animate__animated animate__fadeInUp">Get Started Today</h2>
+            <p class="lead mb-4 animate__animated animate__fadeInUp" style="animation-delay: 0.3s;">Join thousands of businesses managing their employers efficiently.</p>
             {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout_page' %}" style="display:inline;">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-lg">Logout</button>
+                    <button type="submit" class="btn btn-danger btn-lg animate__animated animate__zoomIn" style="animation-delay: 0.6s;">Logout</button>
                 </form>
             {% else %}
-                <a href="{% url 'login_page' %}" class="btn btn-primary btn-lg">Login Now</a>
+                <a href="{% url 'login_page' %}" class="btn btn-primary btn-lg animate__animated animate__zoomIn" style="animation-delay: 0.6s;">Login Now</a>
             {% endif %}
         </div>
     </section>
 </main>
 
-<style>
-    .hero-section {
-        background-color: #f8f9fa;
-        border-radius: 10px;
-    }
-    .card {
-        border-radius: 10px;
-        transition: transform 0.3s;
-    }
-    .card:hover {
-        transform: translateY(-5px);
-    }
-    .btn-primary {
-        background-color: #0288d1;
-        border-color: #0288d1;
-    }
-    .btn-primary:hover {
-        background-color: #0277bd;
-        border-color: #0277bd;
-    }
-    .btn-secondary {
-        background-color: #6c757d;
-        border-color: #6c757d;
-    }
-    .btn-secondary:hover {
-        background-color: #5a6268;
-        border-color: #5a6268;
-    }
-    .btn-danger {
-        background-color: #d32f2f;
-        border-color: #d32f2f;
-    }
-    .btn-danger:hover {
-        background-color: #b71c1c;
-        border-color: #b71c1c;
-    }
-</style>
+<!-- Animate.css for animations -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 {% endblock %}

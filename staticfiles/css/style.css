@@ -1,12 +1,13 @@
 /* General Styles */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f6f9;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
     color: #333;
     line-height: 1.6;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0;
 }
 
 /* Ensure content takes up available space */
@@ -16,30 +17,50 @@ main {
 
 /* Container Styling */
 .container {
-    margin-top: 2rem;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    margin-top: 2.5rem;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
 }
 
 /* Navbar Styling */
 .navbar {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     padding: 1rem 2rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.navbar.sticky-top {
+    z-index: 1000;
 }
 
 .navbar-brand {
-    font-weight: bold;
+    font-weight: 600;
     color: #007bff !important;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+    color: #0056b3 !important;
+}
+
+.navbar-brand img {
+    margin-right: 0.75rem;
+    border-radius: 50%;
 }
 
 .navbar-nav .nav-link {
     color: #333 !important;
     font-size: 1.1rem;
-    margin-left: 1rem;
+    margin: 0 1rem;
+    position: relative;
     transition: color 0.3s ease;
 }
 
@@ -47,316 +68,327 @@ main {
     color: #007bff !important;
 }
 
+.navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #007bff;
+    transition: width 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
 .dropdown-menu {
-    border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.dropdown-menu-end {
+    right: 0;
+    left: auto;
+}
+
+.dropdown-item {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
 }
 
 .dropdown-item:hover {
-    background-color: #f8f9fa;
+    background-color: #007bff;
+    color: #fff;
 }
 
 /* Footer Styling */
 .footer {
-    background-color: #343a40;
+    background: linear-gradient(180deg, #1e2529, #343a40);
     color: #ffffff;
-    padding: 2rem 0;
+    padding: 4rem 0;
     margin-top: auto;
 }
 
+.footer h5 {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
 .footer a {
-    color: #ffffff;
+    color: #d1d1d1;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .footer a:hover {
-    text-decoration: underline;
+    color: #007bff;
+}
+
+.company-logos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+    gap: 1.5rem;
+}
+
+.company-logos img {
+    max-width: 70px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.company-logos img:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .social-links a {
-    font-size: 1.1rem;
+    font-size: 1.8rem;
+    margin: 0 1rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #007bff;
+    transform: translateY(-4px);
 }
 
 /* Hero Section */
 .hero-section {
     background: linear-gradient(135deg, #007bff, #00d4ff);
     color: #ffffff;
-    padding: 4rem 0;
-    border-radius: 8px;
+    padding: 6rem 0;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3), transparent);
+    opacity: 0.4;
 }
 
 .hero-section h1 {
-    font-size: 3rem;
+    font-size: 4rem;
     font-weight: 700;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .hero-section p {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
+    max-width: 700px;
+    margin: 0 auto;
 }
 
 /* Features Section */
+.features-section {
+    background: transparent;
+}
+
 .features-section .card {
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .features-section .card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
 }
 
 .features-section .card-title {
     color: #007bff;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
+.features-section .card-text {
+    color: #555;
+    font-size: 1rem;
+}
+
+.features-section .card-body i {
+    transition: color 0.3s ease;
+}
+
+.features-section .card:hover i {
+    color: #0056b3;
 }
 
 /* CTA Section */
 .cta-section {
-    background-color: #007bff;
+    background: linear-gradient(135deg, #007bff, #0056b3);
     color: #ffffff;
-    padding: 3rem 0;
-    border-radius: 8px;
+    padding: 5rem 0;
+    border-radius: 16px;
+    position: relative;
+}
+
+.cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2), transparent);
+    opacity: 0.3;
 }
 
 .cta-section h2 {
-    font-size: 2.5rem;
+    font-size: 3rem;
+    font-weight: 700;
 }
 
-/* Headings */
-h1 {
-    font-size: 2.5rem;
-    color: #007bff;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-}
-
-h2 {
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
+.cta-section p {
+    font-size: 1.4rem;
 }
 
 /* Buttons */
 .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    background: linear-gradient(135deg, #007bff, #00d4ff);
+    border: none;
+    padding: 0.85rem 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3, #00aaff);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 .btn-secondary {
-    background-color: #6c757d;
-    border-color: #6c757d;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    background: linear-gradient(135deg, #6c757d, #adb5bd);
+    border: none;
+    padding: 0.85rem 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
 .btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #5a6268;
+    background: linear-gradient(135deg, #5a6268, #8f9ba6);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.btn-info {
-    background-color: #17a2b8;
-    border-color: #17a2b8;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-}
-
-.btn-info:hover {
-    background-color: #117a8b;
-    border-color: #117a8b;
-}
-
-/* Employer List (employer_list.html) */
-.table {
-    background-color: #ffffff;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-top: 1rem;
-}
-
-.table th {
-    background-color: #007bff;
-    color: #ffffff;
-    font-weight: 600;
-    padding: 1rem;
-}
-
-.table td {
-    padding: 1rem;
-    vertical-align: middle;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.table .btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-}
-
-/* Employer Form (employer_form.html) */
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    font-weight: 500;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.form-control {
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    padding: 0.75rem;
-    font-size: 1rem;
-}
-
-.form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-/* Login Form (authentication/login.html) */
-.login-form {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.login-form h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.login-form .btn-primary {
-    width: 100%;
-}
-
-/* Profile Page (authentication/profile.html) */
-.profile-section {
-    max-width: 600px;
-    margin: 2rem auto;
-}
-
-.profile-section h2 {
-    text-align: center;
-}
-
-.profile-section .card {
+.btn-danger {
+    background: linear-gradient(135deg, #dc3545, #ff6b6b);
     border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 0.85rem 2.5rem;
+    font-size: 1.2rem;
+    border-radius: 50px;
+    transition: all 0.3s ease;
 }
 
-.profile-section .card-body {
-    padding: 2rem;
-}
-
-/* Admin Interface (admin/base_site.html) */
-.admin-header {
-    background-color: #007bff;
-    color: #ffffff;
-    padding: 1rem;
-    text-align: center;
-    border-radius: 8px 8px 0 0;
-}
-
-.admin-content {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 0 0 8px 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* REST Framework API (rest_framework/api.html, rest_framework/login.html) */
-.api-container {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-.api-container h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Swagger and ReDoc (swagger/swagger-ui.html, swagger/redoc.html) */
-.swagger-ui .topbar {
-    background-color: #007bff;
-    padding: 1rem;
-}
-
-.swagger-ui .topbar a {
-    color: #ffffff !important;
-}
-
-.redoc-wrap {
-    background-color: #ffffff;
-    padding: 2rem;
-    border-radius: 8px;
+.btn-danger:hover {
+    background: linear-gradient(135deg, #b02a37, #ff4d4d);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-    }
-
-    .btn-primary, .btn-secondary {
-        padding: 0.5rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    .table th, .table td {
-        padding: 0.75rem;
-        font-size: 0.9rem;
-    }
-
-    .login-form, .profile-section {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
-
-    .container {
-        padding: 1rem;
-    }
-
-    .navbar-brand {
-        font-size: 1.2rem;
-    }
-
+@media (max-width: 992px) {
     .navbar-nav .nav-link {
-        margin-left: 0.5rem;
-        font-size: 1rem;
-    }
-
-    .hero-section {
-        padding: 2rem 0;
+        margin: 0 0.75rem;
     }
 
     .hero-section h1 {
-        font-size: 2rem;
+        font-size: 3rem;
     }
 
     .hero-section p {
+        font-size: 1.3rem;
+    }
+
+    .cta-section h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 2rem;
+    }
+
+    .navbar {
+        padding: 0.75rem 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+
+    .navbar-nav .nav-link {
+        margin: 0.5rem 0;
+    }
+
+    .hero-section {
+        padding: 4rem 0;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-section p {
+        font-size: 1.1rem;
+    }
+
+    .features-section .card-title {
+        font-size: 1.4rem;
+    }
+
+    .cta-section {
+        padding: 3rem 0;
+    }
+
+    .cta-section h2 {
+        font-size: 2rem;
+    }
+
+    .cta-section p {
+        font-size: 1.1rem;
+    }
+
+    .footer .company-logos {
+        grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand {
+        font-size: 1.3rem;
+    }
+
+    .btn-primary, .btn-secondary, .btn-danger {
+        padding: 0.75rem 2rem;
         font-size: 1rem;
+    }
+
+    .footer h5 {
+        font-size: 1.1rem;
+    }
+
+    .social-links a {
+        font-size: 1.5rem;
     }
 }
