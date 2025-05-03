@@ -10,10 +10,56 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% block extra_css %}{% endblock %}
+    <style>
+        /* Custom color overrides */
+        body {
+            background-color: #f8f9fa; /* Light gray background instead of white */
+        }
+        
+        .navbar {
+            background-color: #f1f3f5 !important; /* Light gray navbar */
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .footer {
+            background-color: #343a40 !important; /* Dark gray footer */
+        }
+        
+        .footer a {
+            color: #adb5bd !important; /* Light gray links in footer */
+        }
+        
+        .footer a:hover {
+            color: #ffffff !important; /* White on hover */
+        }
+        
+        .company-logos img {
+            background-color: #e9ecef; /* Light gray background for company logos */
+            padding: 5px;
+            border-radius: 4px;
+        }
+        
+        .dropdown-menu {
+            background-color: #f8f9fa; /* Light gray dropdown */
+        }
+        
+        .dropdown-item {
+            color: #495057; /* Dark gray dropdown text */
+        }
+        
+        .dropdown-item:hover {
+            background-color: #e9ecef; /* Lighter gray on hover */
+        }
+        
+        .card {
+            background-color: #f8f9fa; /* Light gray cards */
+            border: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'index' %}">
                 <img src="https://via.placeholder.com/40" alt="Employer Management Logo" width="40" height="40" class="d-inline-block align-text-top">
@@ -73,43 +119,43 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer bg-dark text-white py-5">
+    <footer class="footer py-5">
         <div class="container">
             <div class="row">
                 <!-- Quick Links -->
                 <div class="col-md-3 mb-4">
-                    <h5>Quick Links</h5>
+                    <h5 class="text-black">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
-                        <li><a href="{% url 'employer_list_create' %}" class="text-white">Employers</a></li>
-                        <li><a href="/swagger/" class="text-white">API Docs</a></li>
+                        <li><a href="{% url 'index' %}" class="text-muted">Home</a></li>
+                        <li><a href="{% url 'employer_list_create' %}" class="text-muted">Employers</a></li>
+                        <li><a href="/swagger/" class="text-muted">API Docs</a></li>
                         {% if user.is_authenticated %}
-                            <li><a href="{% url 'profile' %}" class="text-white">Profile</a></li>
+                            <li><a href="{% url 'profile' %}" class="text-muted">Profile</a></li>
                         {% else %}
-                            <li><a href="{% url 'login_page' %}" class="text-white">Login</a></li>
-                            <li><a href="{% url 'register_page' %}" class="text-white">Register</a></li>
+                            <li><a href="{% url 'login_page' %}" class="text-muted">Login</a></li>
+                            <li><a href="{% url 'register_page' %}" class="text-muted">Register</a></li>
                         {% endif %}
                     </ul>
                 </div>
                 <!-- Contact Info -->
                 <div class="col-md-3 mb-4">
-                    <h5>Contact Us</h5>
-                    <p>Email: <a href="mailto:support@employermanagement.com" class="text-white">support@employermanagement.com</a></p>
-                    <p>Phone: +880 1234567890</p>
-                    <p>Address: Dhaka, Bangladesh</p>
+                    <h5 class="text-black">Contact Us</h5>
+                    <p class="text-muted">Email: <a href="mailto:support@employermanagement.com" class="text-muted">support@employermanagement.com</a></p>
+                    <p class="text-muted">Phone: +880 1234567890</p>
+                    <p class="text-muted">Address: Dhaka, Bangladesh</p>
                 </div>
                 <!-- Social Links -->
                 <div class="col-md-3 mb-4">
-                    <h5>Follow Us</h5>
+                    <h5 class="text-black">Follow Us</h5>
                     <div class="social-links">
-                        <a href="https://facebook.com" class="text-white mx-2"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com" class="text-white mx-2"><i class="fab fa-twitter"></i></a>
-                        <a href="https://linkedin.com" class="text-white mx-2"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://facebook.com" class="text-muted mx-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com" class="text-muted mx-2"><i class="fab fa-twitter"></i></a>
+                        <a href="https://linkedin.com" class="text-muted mx-2"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <!-- Trusted Companies -->
                 <div class="col-md-3 mb-4">
-                    <h5>Trusted By</h5>
+                    <h5 class="text-block">Trusted By</h5>
                     <div class="company-logos">
                         <img src="https://via.placeholder.com/60?text=Company1" alt="Company 1" class="img-fluid mb-2">
                         <img src="https://via.placeholder.com/60?text=Company2" alt="Company 2" class="img-fluid mb-2">
@@ -119,8 +165,8 @@
                 </div>
             </div>
             <div class="text-center mt-4">
-                <p>© 2025 Employer Management System. All rights reserved.</p>
-                <p>Developed by <a href="mailto:alam01640882530@gmail.com" class="text-white">Nazmul Alam</a></p>
+                <p class="text-muted">© 2025 Employer Management System. All rights reserved.</p>
+                <p class="text-muted">Developed by <a href="mailto:alam01640882530@gmail.com" class="text-muted">Nazmul Alam</a></p>
             </div>
         </div>
     </footer>

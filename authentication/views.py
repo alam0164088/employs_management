@@ -79,10 +79,8 @@ def profile_page(request):
     return render(request, 'authentication/profile.html')
 
 def logout_page(request):
-    if request.method == 'POST':
-        logout(request)
-        return redirect('login_page')
-    return render(request, 'authentication/logout.html')
+    logout(request)
+    return redirect('login_page')
 
 class IndexView(View):
     template_name = 'index.html'
